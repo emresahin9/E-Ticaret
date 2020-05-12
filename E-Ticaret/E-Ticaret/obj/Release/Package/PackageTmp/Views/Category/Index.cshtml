@@ -1,0 +1,39 @@
+﻿@model IEnumerable<E_Ticaret.Models.Category>
+@{
+    ViewBag.Title = "Kategoriler";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+</script>
+<h2>Kategori Başlıkları</h2>
+<hr />
+<table class="table table-striped table-bordered table-hover table-active table-responsive-md" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.categoryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.categoryName)
+                </td>
+                <td><button id="myBtn" onclick="window.location.href= '/KategoriSil/@item.categoryId';" class="btn btn-danger" style="width:200px;float:right">Kategoriyi Kaldır</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+

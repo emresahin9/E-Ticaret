@@ -1,0 +1,32 @@
+﻿@model IPagedList<E_Ticaret.Models.Product>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Ana Sayfa";
+    Layout = "~/Views/Shared/_Site_Layout.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        if (item.stock > 0)
+        {
+            <div style="box-shadow:5px 5px 25px;border:2px solid grey;border-radius: 20px;margin:0 5px 50px 20px;background-color:snow" class="col-xl-5 col-lg-8 col-md-11 col-sm-10">
+                <div style=""></div>
+                <div style="text-align:center;margin:10px">
+                    <img src=@item.productImageUrl class="img-thumbnail" href="/UrunGoster/@item.productId" />
+                    <text style="font-size:20px;font-weight:bold">@item.productName.ToUpper()</text>
+                    <hr />
+                    <text>@item.price $</text>
+                    <hr />
+                    <button class="btn btn-outline-info" style="width:150px;height:60px" onclick="window.location.href= '/UrunGoster/@item.productId';">İNCELE</button>
+                    <button class="btn btn-outline-info" style="width:150px;height:60px" onclick="window.location.href= '/SepeteEkle/@item.productId';">SEPETE EKLE</button>
+                    <a href=""></a>
+                </div>
+            </div>
+        }
+    }
+</div>
+<div class="offset-4">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>

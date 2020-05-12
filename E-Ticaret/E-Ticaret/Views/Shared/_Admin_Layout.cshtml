@@ -1,0 +1,147 @@
+﻿@{
+        if(Session["Email"]==null)
+        { Response.Redirect("/YonetimGiris"); }
+    }
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - E-Ticaret</title>
+    <link rel="shortcut icon" href="~/Images/logo.ico" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+
+
+    <style>
+        .nav-item {
+            font-size: 28px;
+            font-weight: bold;
+            font-family: Century Gothic;
+            padding: 5px 0 0 15px;
+            color: floralwhite;
+        }
+
+        #navbar:link, #navbar:visited {
+            color: floralwhite;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        #navbar:hover, #navbar:active {
+            background-color: #00c5cd;
+        }
+
+        a.dropdown-item {
+            font-size: 20px;
+            padding: 10px;
+            font-family: Century Gothic;
+            color: darkcyan;
+            font-weight: bold;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        .dropdown-menu {
+            border: 2px solid black;
+        }
+
+        #sidebar-li {
+            color: darkslategray;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md justify-content-center fixed-top" style="background-color:#00868b">
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" style="background-color:azure;width:50px;height:3px;border:1px solid black"></a>
+            <a id="navbar" class="navbar-brand nav-link" href="/YonetimPaneli" style="text-decoration:none">
+                <span style="color:darkorange;font-family:Rockwell;font-size:60px;font-weight:bold">E</span>
+                <span style="color:white;font-family:Rockwell;font-size:60px;font-weight:bold"> - </span>
+                <span style="color:#ffec8b;font-size:60px;font-family:Rockwell;font-weight:bold">Ticaret</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon" style="color:white;border:3px solid white;border-radius:10px">-</span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a id="navbar" class="nav-link dropdown-toggle" data-toggle="dropdown">@Session["FullName"]</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/YonetimProfil">Profil</a>
+                            <a class="dropdown-item" href="/YonetimCikis">Çıkış</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div id="wrapper">
+        <div id="sidebar-wrapper" style="background-color:#d1eeee">
+            <ul class="sidebar-nav" style="font-size:18px;font-weight:bold;padding-top:80px">
+                <li>
+                    <a href="/YonetimPaneli" id="sidebar-li">Yöneticileri Görüntüle</a>
+                    <hr />
+                </li>
+                <li>
+                    <a href="/KayitliKullanicilar" id="sidebar-li">Kayıtlı Kullanıcılar</a>
+                    <hr />
+                </li>
+                <li>
+                    <a href="/KategorilerTablosu" id="sidebar-li">Kategorileri Görüntüle</a>
+                </li>
+                <li>
+                    <a href="/KategoriEkle" id="sidebar-li">Kategori Ekle</a>
+                    <hr />
+                </li>
+                <li>
+                    <a href="/UrunlerTablosu" id="sidebar-li">Ürünleri Görüntüle</a>
+                </li>
+                <li>
+                    <a href="/UrunEkle" id="sidebar-li">Yeni Ürün Ekle</a>
+                    <hr />
+                </li>
+                <li>
+                    <a href="/IletisimAdresleri/1" id="sidebar-li">İletişim Bölümünü Düzenle</a>
+                    <hr />
+                </li>
+                <li>
+                    <a href="/YorumlarTablosu" id="sidebar-li">Yorumları Görüntüle</a>
+                </li>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container" style="padding-top:90px">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+</body>
+</html>
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>

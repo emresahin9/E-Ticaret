@@ -1,0 +1,35 @@
+﻿@model IEnumerable<E_Ticaret.Models.Product>
+
+@{
+    ViewBag.Title = "Alışveriş Sepeti";
+    Layout = "~/Views/Shared/_Site_Layout.cshtml";
+    double totalPrice = 0;
+}
+<h2 style="text-align:center;padding-bottom:20px">SEPETTEKİ ÜRÜNLER</h2>
+<hr />
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div style="padding-bottom:20px" class="col-xl-4 col-lg-8 col-md-10 col-sm-8">
+                <img src="@item.productImageUrl" class="img-thumbnail" />
+            </div>
+            <div style="padding-bottom:20px" class="offset-1 col-xl-6 col-lg-8 col-md-10 col-sm-10">
+                <br />
+                <p style="font-size:30px">@item.productName</p>
+                <p style="font-size:25px">@item.price $</p>
+                <button class="btn btn-outline-danger" style="width:250px;height:60px;margin-top:25px" onclick="window.location.href= '/SepettenCikar/@item.productId';">SEPETTEN ÇIKAR</button>
+                <hr />
+                @{totalPrice = Convert.ToDouble(item.price) + totalPrice;}
+            </div>
+        }
+            <div class="offset-sm-4 offset-4 offset-xl-4">
+                <hr />
+                <h4 class="">TOPLAM FİYAT</h4>
+                <br />
+                <h1 class="offset-2">@totalPrice $</h1>
+            </div>
+        
+        <button class="btn btn-outline-info offset-xl-4 offset-lg-3 offset-3" style="width:250px;height:60px;margin-top:25px" onclick="window.location.href= '/SatinAl/@Session["userCartId"]';">SATIN AL</button>
+    </div>
+</div>

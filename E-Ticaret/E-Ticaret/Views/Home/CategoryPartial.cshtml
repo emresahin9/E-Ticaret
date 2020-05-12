@@ -1,0 +1,13 @@
+﻿@model IEnumerable<E_Ticaret.Models.Category>
+
+<nav class="navbar" style="color:coral">
+    <ul class="navbar-nav">
+        <text style="text-align:center;font-size:38px;font-weight:bold">KATEGORİLER</text>
+        @foreach (var item in Model)
+        {
+            <li class="nav-item">
+                <a style="font-size:30px" class="nav-link" href="/KategoriGoster/@item.categoryId">@item.categoryName</a>
+            </li>
+        }
+    </ul>
+</nav>

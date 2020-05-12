@@ -1,0 +1,39 @@
+﻿@model IEnumerable<E_Ticaret.Models.User>
+
+@{
+    ViewBag.Title = "Kullanıcılar";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+</script>
+<h2>Kayıtlı Kullanıcı Hesapları</h2>
+<hr />
+<table class="table table-striped table-bordered table-hover table-active table-responsive-md" id="myTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userFullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userEmail)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.userFullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userEmail)
+        </td>
+    </tr>
+}
+
+</table>

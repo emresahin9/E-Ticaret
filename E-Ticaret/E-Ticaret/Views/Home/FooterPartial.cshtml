@@ -1,0 +1,28 @@
+﻿@model E_Ticaret.Models.Contact
+<style>
+    #footer-li-header{
+        font-size:20px;
+        color:aliceblue;
+    }
+    #footer-li-content{
+        font-size:15px;
+        color:azure;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+            <ul>
+                <li id="footer-li-header">ADRES: </li>
+                <li id="footer-li-content">@Model.contactAdress</li>
+            </ul>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <ul>
+                <li id="footer-li-header">TEL: </li>
+                <li id="footer-li-content">@Model.contactTel</li>
+                <li></li>
+                <li id="footer-li-header">EMAİL ADRESİ:</li>
+                <li id="footer-li-content">@Model.contactEmail</li>
+            </ul>
+        </div>
+</div>

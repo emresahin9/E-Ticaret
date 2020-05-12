@@ -1,0 +1,13 @@
+Yönetici Hesap Bilgisi
+
+Eposta: admin@123.com	
+Þifre:00000
+
+Bu e posta ve þifreyle yönetici YÖNETÝCÝ giriþi yapabilirsiniz.
+---------------------------------------------------------------------
+Kullanýcý Hesap Bilgisi
+
+Eposta: tugrul@123.com
+Þifre:00000
+
+Bu e posta ve þifreyle yönetici KULLANICI giriþi yapabilirsiniz.

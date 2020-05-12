@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Yönetici Giriş</title>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Images/logo.ico" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <style>
+        .alert {
+            color: red;
+        }
+    </style>
+</head>
+<body style="background-color:aliceblue">
+    <div class="container">
+        <div class="row justify-content-center">
+            <form method="post" action="YonetimGiris" class="col-xl-5 col-lg-6 col-md-8 col-10" style="padding-top:150px">
+                @Html.AntiForgeryToken()
+                <div class="form-group" style="text-align:center;font-size:50px;color:cadetblue;font-family:CenturyGothic;font-weight:bold">YÖNETİCİ GİRİŞİ</div>
+                <div style="border:1px solid cadetblue;border-radius:15px">
+                    <div style="padding:20px">
+                        <div class="alert" style="text-align:center">@ViewBag.error</div>
+                        <div class="form-group" style="padding-bottom:10px">
+                            <input type="email" name="adminEmail" class="form-control" placeholder="Emailinizi Giriniz" required style="font-size:20px" />
+                        </div>
+                        <div class="form-group" style="padding-bottom:10px">
+                            <input type="password" name="adminPassword" class="form-control" placeholder="Şifrenizi Giriniz" required style="font-size:20px" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-block btn-outline-secondary btn-lg">GİRİŞ YAP</button>
+                        </div>
+                        <a href="/YonetimSifremiUnuttum" style="text-decoration:none;color:crimson;font-size:20px" class="offset-7">Şifremi Unuttum</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

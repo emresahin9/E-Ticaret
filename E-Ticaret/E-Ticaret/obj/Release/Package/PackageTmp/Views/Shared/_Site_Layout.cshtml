@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head lang="tr">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - E-Tİcaret</title>
+    <link rel="shortcut icon" href="~/Images/logo.ico" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .nav-item {
+            font-size: 28px;
+            font-weight: bold;
+            font-family: Century Gothic;
+            padding: 5px 0 0 15px;
+            color: floralwhite;
+        }
+
+        #nav-link-top:link, #nav-link-top:visited {
+            color: floralwhite;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        #nav-link-top:hover, #nav-link-top:active {
+            background-color: #00c5cd;
+        }
+
+        #dropdown-item-top {
+            font-size: 20px;
+            padding: 10px;
+            font-family: Century Gothic;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        .dropdown-menu {
+            border: 2px solid black;
+        }
+
+        #nav-link-left {
+            text-decoration: none;
+            color: darkslategrey
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;background-color:aliceblue">
+
+    <header>
+        <nav class="navbar navbar-expand-xl" style="background-color:#00868b;top:-50px;position:relative">
+            <a class="navbar-brand nav-link" href="/AnaSayfa" style="text-decoration:none">
+                <span style="color:darkorange;font-family:Rockwell;font-size:60px;font-weight:bold">E</span>
+                <span style="color:white;font-family:Rockwell;font-size:60px;font-weight:bold"> - </span>
+                <span style="color:#ffec8b;font-size:60px;font-family:Rockwell;font-weight:bold">Ticaret</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon" style="color:white;border:3px solid white;border-radius:10px">-</span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    @if (Session["userEmail"] == null)
+                    {
+                        <li class="nav-item">
+                            <a id="nav-link-top" class="nav-link" href="/KullaniciKayit">Kayıt Ol</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="nav-link-top" class="nav-link" href="/KullaniciGiris">Giriş yap</a>
+                        </li>
+                            }
+                            @if (Session["userEmail"] != null) {
+                        <li class="nav-item dropdown">
+                            <a id="nav-link-top" class="nav-link dropdown-toggle" data-toggle="dropdown">@Session["userName"]</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/KullanıcıBilgileriDüzenle/@Session["userId"]">Profil</a>
+                                <a class="dropdown-item" href="/Sepet">Sepet</a>
+                                <a class="dropdown-item" href="/Cikis">Çıkış</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12 col-12" style="border:2px solid #00868b;border-radius:15px">
+                    @{Html.RenderAction("CategoryPartial", "Home");}
+                </div>
+                <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12 col-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="position:relative;bottom:-63px" >
+        <div class="container-fluid" style="background-color:#00868b">
+            <div class="container" style="padding:50px 0 20px 0">
+                @{Html.RenderAction("FooterPartial", "Home");}
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

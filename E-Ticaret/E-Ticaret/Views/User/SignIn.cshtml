@@ -1,0 +1,38 @@
+﻿@model E_Ticaret.Models.User
+
+@{
+    ViewBag.Title = "Kayıt Ol";
+    Layout = "~/Views/Shared/_Site_Layout.cshtml";
+}
+
+<div class="offset-md-2 offset-lg-3 offset-2">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="alert col-lg-7 col-md-9 col-sm-7 col-9" style="text-align:center;color:red">@ViewBag.result</div>
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="padding-bottom:10px">
+            @Html.EditorFor(model => model.userFullname, new { htmlAttributes = new { @class = "form-control col-xl-7 col-lg-9 col-md-12 col-sm-9 col-11", @placeholder = "Adınız Soyadınız" } })
+            @Html.ValidationMessageFor(model => model.userFullname, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group" style="padding-bottom:10px">
+            @Html.EditorFor(model => model.userEmail, new { htmlAttributes = new { @class = "form-control col-xl-7 col-lg-9 col-md-12 col-sm-9 col-11", @placeholder = "EPosta Adresiniz",@type="email" } })
+            @Html.ValidationMessageFor(model => model.userEmail, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group" style="padding-bottom:10px">
+            @Html.EditorFor(model => model.userPassword, new { htmlAttributes = new { @class = "form-control  col-xl-7 col-lg-9 col-md-12 col-sm-9 col-11", @placeholder = "Şifreniz",@type="password" } })
+            @Html.ValidationMessageFor(model => model.userPassword, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-block btn-outline-secondary btn-lg col-xl-7 col-lg-9 col-md-12 col-sm-9 col-11">Kayıt Ol</button>
+        </div>
+    </div>
+    }
+</div>

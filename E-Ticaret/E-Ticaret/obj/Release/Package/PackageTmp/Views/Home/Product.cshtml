@@ -1,0 +1,63 @@
+﻿@model E_Ticaret.Models.Product
+
+@{
+    ViewBag.Title = "Ürün Detay";
+    Layout = "~/Views/Shared/_Site_Layout.cshtml";
+}
+<style>
+    dt,dd{
+        padding-bottom:20px;
+    }
+</style>
+<h3>@ViewBag.Kategori/@Model.productName</h3>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Model.productImageUrl" style="height:350px;width:350px;padding-bottom:10px" />
+        </div>
+        <div class="offset-1 col-sm-10 col-md-10 col-lg-10 col-xl-5">
+            <dl class="dl-horizontal" style="text-align:center">
+                <dt>
+                    @Html.DisplayNameFor(model => model.productName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.productName)
+                </dd>
+                <hr />
+                <dt>
+                    @Html.DisplayNameFor(model => model.productDescription)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.productDescription)
+                </dd>
+                <hr />
+                <dt>
+                    @Html.DisplayNameFor(model => model.price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.price) $
+                </dd>
+                <button class="btn btn-outline-info" style="width:250px;height:60px" onclick="window.location.href= '/SepeteEkle/@Model.productId';">SEPETE EKLE</button>
+            </dl>
+        </div>
+    </div>
+    <div class="row" style="padding-bottom:20px;padding-top:20px">
+        <h2 style="text-align:center;padding-bottom:20px;color:#00868b" class="offset-xl-3 offset-lg-2 offset-md-1 offset-1 col-xl-6 col-lg-8 col-md-11 col-sm-10">YORUMLAR</h2>
+@{ Html.RenderAction("CommentPartial", "Home"); }
+
+    </div>
+    <div class="row">
+    <form action="/YorumYap/@Model.productId" method="post" class="offset-xl-2 offset-lg-1 offset-md-0 offset-0 col-xl-8 col-lg-10 col-md-12 col-sm-12" @*style="border:3px solid #00868b;border-radius:5px"*@>
+        <div class="form-group" style="padding:15px">
+            <textarea type="text" class="form-control col-12" style="min-height:80px" name="commentContent"> </textarea>
+        </div>
+        <div class="form-group offset-xl-3 offset-2" style="padding:15px">
+            <button style="width:250px;height:60px" class="btn btn-outline-dark" type="submit">YORUM YAP</button>
+        </div>
+    </form>    
+    </div>
+</div>

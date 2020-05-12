@@ -1,0 +1,44 @@
+﻿@model IEnumerable<E_Ticaret.Models.Product>
+
+@{
+    ViewBag.Title = "Ürünler";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+</script>
+<h2>Mevcut Ürünler</h2>
+<hr />
+<table class="table table-striped table-bordered table-hover table-active table-responsive-md" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.productName)
+            </th>
+            <th>@Html.DisplayNameFor(model => model.productCategory.categoryName)</th>
+            <th>Mevcut Stok</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.productName
+                </td>
+                <td>
+                    @item.productCategory.categoryName
+                </td>
+                <td>@item.stock</td>
+                <td><button onclick="window.location.href= '/UrunSil/@item.productId';" class="btn btn-danger" style="border:1px solid;border-radius:5px;width:200px;float:right">Ürünü Sil</button><text style="float:right">&#160;&#160;&#160;</text><button onclick="window.location.href= '/UrunGuncelle/@item.productId';" class="btn btn-dark" style="border:1px solid;border-radius:5px;width:200px;float:right">Ürün Bilgilerini Güncelle</button><text style="float:right">&#160;&#160;&#160;</text><button onclick="window.location.href= '/UrunAyrıntı/@item.productId';" class="btn btn-info" style="border:1px solid;border-radius:5px;width:200px;float:right">Ayrıntıları Görüntüle</button></td>
+            </tr>
+        }
+    </tbody>
+    </table>

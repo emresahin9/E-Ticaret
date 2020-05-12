@@ -1,0 +1,53 @@
+﻿@model IEnumerable<E_Ticaret.Models.Comment>
+
+@{
+    ViewBag.Title = "Yorumlar";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+</script>
+
+<h2>Tüm Yorumlar</h2>
+<hr />
+<table class="table table-striped table-bordered table-hover table-active table-responsive-md" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                Yorum Sahibi
+            </th>
+            <th>
+                Yorum Yapılan Ürün
+            </th>
+            <th>
+                Yorum İçeriği
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.userEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.productName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.commentContent)
+                </td>
+                <td><button id="myBtn" onclick="window.location.href= '/YorumSil/@item.commentId';" class="btn btn-danger" style="width:200px;float:right">Yorumu Sil</button></td>
+            </tr>
+        }
+    </tbody>
+</table>

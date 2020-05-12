@@ -1,0 +1,66 @@
+﻿@model E_Ticaret.Models.Product
+
+@{
+    ViewBag.Title = "Ürün Ayrıntı";
+    Layout = "~/Views/Shared/_Admin_Layout.cshtml";
+}
+<style>
+    dt dd {
+        padding-bottom:1em;
+    }
+</style>
+<h2 style="text-align:center">Ürün Detayları</h2>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-11 col-lg-8 col-xl-6">
+        <img class="img-responsive" src="@Model.productImageUrl" />
+        <button onclick="window.location.href= '/UrunSil/@Model.productId';" class="btn btn-danger" style="height:70px;width:190px;border:5px solid;border-radius:10px">Ürünü Sil</button> <button onclick="window.location.href= '/UrunGuncelle/@Model.productId';" class="btn btn-dark" style="height:70px;width:190px;border:5px solid;border-radius:10px">Ürün Bilgilerini Güncelle</button>
+        </div>
+        <div class="col-md-1 col-lg-4  col-xl-6">
+            <dl style="text-align:center;padding-top:20px">
+                <dt style="padding-bottom:5px">
+                    @Html.DisplayNameFor(model => model.productName)
+                </dt>
+                <hr />
+                <dd style="padding-bottom:1em">
+                    @Html.DisplayFor(model => model.productName)
+                </dd>
+
+                <dt style="padding-bottom:5px">
+                    @Html.DisplayNameFor(model => model.productCategory.categoryName)
+                </dt>
+                <hr />
+                <dd style="padding-bottom:1em">
+                    @Html.DisplayFor(model => model.productCategory.categoryName)
+                </dd>
+
+                <dt style="padding-bottom:5px">
+                    @Html.DisplayNameFor(model => model.productDescription)
+                </dt>
+                <hr />
+                <dd style="padding-bottom:1em">
+                    @Html.DisplayFor(model => model.productDescription)
+                </dd>
+
+                <dt style="padding-bottom:5px">
+                    @Html.DisplayNameFor(model => model.price)
+                </dt>
+                <hr />
+                <dd style="padding-bottom:1em">
+                    @Html.DisplayFor(model => model.price) $
+                </dd>
+
+                <dt style="padding-bottom:5px">
+                    @Html.DisplayNameFor(model => model.stock)
+                </dt>
+                <hr />
+                <dd style="padding-bottom:1em">
+                    @Html.DisplayFor(model => model.stock)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    
+</div>
+

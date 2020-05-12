@@ -1,0 +1,14 @@
+﻿@model IEnumerable<E_Ticaret.Models.Comment>
+
+@foreach (var item in Model)
+{
+<div class="offset-xl-2 offset-lg-1 offset-md-0 offset-0 col-xl-8 col-lg-10 col-md-12 col-sm-12" style="border:4px solid darkorange;border-radius:5px;margin-bottom:20px;box-shadow:5px 5px 25px">
+    <h1 style="margin:10px">@item.User.userFullname</h1>
+    <hr />
+    <p style="margin:30px">@item.commentContent</p>
+    @if(item.User.userId==Convert.ToInt32(Session["userId"]))
+    {
+    <button class="btn btn-outline-danger" style="width:250px;height:60px;margin-top:25px;margin-bottom:25px;float:right" onclick="window.location.href= '/YorumSil/@item.commentId';">YORUMU KALDIR</button>
+    }
+</div>
+}

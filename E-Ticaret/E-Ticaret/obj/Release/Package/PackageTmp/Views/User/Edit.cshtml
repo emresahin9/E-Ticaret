@@ -1,0 +1,49 @@
+﻿@model E_Ticaret.Models.User
+
+@{
+    ViewBag.Title = "Profil Güncelleme";
+    Layout = "~/Views/Shared/_Site_Layout.cshtml";
+}
+
+<h2>Kullanıcı Bilgilerini Güncelle</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <div class="form-group">
+        <div class="alert" style="color:red">@ViewBag.Result</div>
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.userId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.userFullname, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.EditorFor(model => model.userFullname, new { htmlAttributes = new { @class = "form-control col-xl-5 col-lg-7 col-md-10 col-sm-7 col-9" } })
+            @Html.ValidationMessageFor(model => model.userFullname, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.userEmail, htmlAttributes: new { @class = "control-label col-md-3" })
+            @Html.EditorFor(model => model.userEmail, new { htmlAttributes = new { @class = "form-control col-xl-5 col-lg-7 col-md-10 col-sm-7 col-9" } })
+            @Html.ValidationMessageFor(model => model.userEmail, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-3">Mevcut Şifre</label>
+            <input name="userPassword" class = "form-control col-xl-5 col-lg-7 col-md-10 col-sm-7 col-9" type="password" required/>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-3">Yeni Şifre</label>
+            <input type="password" name="newPassword" class="form-control col-xl-5 col-lg-7 col-md-10 col-sm-7 col-9" required/>
+    </div>
+
+    <div class="form-group">
+            <button type="submit" class="btn btn-block btn-outline-secondary btn-lg col-xl-5 col-lg-7 col-md-10 col-sm-7 col-9">DEĞİŞİKLİKLERİ KAYDET</button>
+    </div>
+</div>
+}
+
+    <button class="btn btn-block btn-outline-danger btn-lg col-xl-5 col-lg-7 col-md-10 col-sm-7 col-9" onclick="window.location.href= '/KullaniciSil/@Model.userId';">KULLANICIYI SİL</button>
